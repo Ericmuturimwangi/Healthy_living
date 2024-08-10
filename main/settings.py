@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     # app
     "home",
+    "recipes",
     # other
     "crispy_forms",
     "crispy_bootstrap5",
