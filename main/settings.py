@@ -53,8 +53,8 @@ INSTALLED_APPS = [
 SITE_ID = 1
 
 DJRICHTEXTFIELD_CONFIG = {
-    "js": ["//cdn.ckeditor.com/ckeditor5/standard/ckeditor5.js"],
-    "init_template": "djrichtextfield/init/ckeditor.js",  # Correct path
+    "js": ["//cdn.ckeditor.com/4.20.0/standard/ckeditor.js"],
+    "init_template": "djrichtextfield/init/ckeditor.js",
     "settings": {
         "toolbar": [
             ["Format", "Bold", "Italic", "Underline"],
@@ -172,6 +172,11 @@ STATICFILES_DIRS = [
 ]
 
 # cludinary settings
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": "your_cloud_name",
+    "API_KEY": "your_api_key",
+    "API_SECRET": "your_api_secret",
+}
 DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 CLOUDINARY_URL = os.environ.get("CLOUDINARY_URL")
 
