@@ -8,4 +8,5 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path("djrichtextfield/", include("djrichtextfield.urls")),
     path("", include("home.urls")),
+    path("recipes/", include("recipes.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
