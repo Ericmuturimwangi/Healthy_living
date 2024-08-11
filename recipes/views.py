@@ -1,4 +1,4 @@
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 from .models import Recipe
 from .forms import RecipeForm
 
@@ -17,3 +17,10 @@ class AddRecipe(LoginRequiredMixin, CreateView):
         # setting insatnce user to person who is logged in.
         form.instance.user = self.request.user
         return super(AddRecipe, self).form_valid(form)
+
+
+class Recipes(ListView):
+    # avoid Recipe to avoid further problems
+    template_name = "recipes/recipes.html"
+    model = Recipe
+    context_object_name = "recipes"
