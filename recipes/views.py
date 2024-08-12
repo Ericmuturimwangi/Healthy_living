@@ -1,9 +1,9 @@
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, DetailView, DeleteView
 from .models import Recipe
 from .forms import RecipeForm
 
 # to check if user is logged in first
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 
 
 class AddRecipe(LoginRequiredMixin, CreateView):
@@ -24,3 +24,22 @@ class Recipes(ListView):
     template_name = "recipes/recipes.html"
     model = Recipe
     context_object_name = "recipes"
+
+
+class RecipeDetail(DetailView):
+    # view single recipe
+    # install pip install black to make it public compliant.
+    # python -m black recipes -  specifying the recipes directory.
+    template_name = "recipes/recipe_detail.html"
+    model = Recipe
+    context_object_name = "recipes"
+
+
+# the mixin helps to check if they are logged in
+class DeleteRecipe(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    # delete recipe
+    model = Recipe
+    success_url = "/recipes/"
+
+    def test_func(self):
+        return self.request.user == self.get_object().user

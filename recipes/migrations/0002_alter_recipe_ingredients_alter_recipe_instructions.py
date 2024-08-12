@@ -7,18 +7,18 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('recipes', '0001_initial'),
+        ("recipes", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='recipe',
-            name='ingredients',
+            model_name="recipe",
+            name="ingredients",
             field=ckeditor.fields.RichTextField(max_length=10000),
         ),
         migrations.AlterField(
-            model_name='recipe',
-            name='instructions',
+            model_name="recipe",
+            name="instructions",
             field=ckeditor.fields.RichTextField(max_length=10000),
         ),
     ]

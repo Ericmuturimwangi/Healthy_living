@@ -13,7 +13,8 @@ Recipes
 <div class="container d-flex flex-row flex-wrap justify-context-center">
   
     {% for recipe in recipes %}
-    <a class="recipes" aria-label="Click to view {{recipe.title}}">
+    <!-- clickables -->
+    <a class="recipes" href="{% url 'recipe_detail' recipe.id %}" aria-label="Click to view {{recipe.title}}">
         <div class="card m-3" style="width: 18rem;">
             <img src="{{recipe.image.url}}" class="card-img-top" alt="{{recipe.image_alt}}">
             <div class="card-body">

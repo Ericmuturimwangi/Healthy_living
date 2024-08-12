@@ -7,18 +7,18 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('recipes', '0002_alter_recipe_ingredients_alter_recipe_instructions'),
+        ("recipes", "0002_alter_recipe_ingredients_alter_recipe_instructions"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='recipe',
-            name='ingredients',
+            model_name="recipe",
+            name="ingredients",
             field=djrichtextfield.models.RichTextField(max_length=10000),
         ),
         migrations.AlterField(
-            model_name='recipe',
-            name='instructions',
+            model_name="recipe",
+            name="instructions",
             field=djrichtextfield.models.RichTextField(max_length=10000),
         ),
     ]
