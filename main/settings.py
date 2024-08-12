@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "cloudinary",
     "cloudinary_storage",
     "djrichtextfield",
+    "profiles",
 ]
 
 SITE_ID = 1
