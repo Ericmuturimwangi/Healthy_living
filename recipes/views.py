@@ -1,9 +1,25 @@
-from django.views.generic import CreateView, ListView, DetailView, DeleteView
+from django.views.generic import (
+    CreateView,
+    ListView,
+    DetailView,
+    DeleteView,
+    UpdateView,
+)
 from .models import Recipe
 from .forms import RecipeForm
 
 # to check if user is logged in first
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
+
+
+class EditeRecipe(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    template_name = "recipes/edit_recipe.html"
+    model = Recipe
+    form_class = RecipeForm
+    success_url = "/recipes/"
+
+    def test_func(self):
+        return self.request.user == self.get_object().user
 
 
 class AddRecipe(LoginRequiredMixin, CreateView):
@@ -40,6 +56,3 @@ class DeleteRecipe(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     # delete recipe
     model = Recipe
     success_url = "/recipes/"
-
-    def test_func(self):
-        return self.request.user == self.get_object().user
