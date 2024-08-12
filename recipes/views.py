@@ -7,6 +7,7 @@ from django.views.generic import (
 )
 from .models import Recipe
 from .forms import RecipeForm
+from django.db.models import Q  # allows to write complex db operations.
 
 # to check if user is logged in first
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
@@ -16,7 +17,7 @@ class EditeRecipe(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     template_name = "recipes/edit_recipe.html"
     model = Recipe
     form_class = RecipeForm
-    success_url = "/recipes/"
+    success_url = "/recipes/recipes/"
 
     def test_func(self):
         return self.request.user == self.get_object().user
@@ -40,6 +41,19 @@ class Recipes(ListView):
     template_name = "recipes/recipes.html"
     model = Recipe
     context_object_name = "recipes"
+
+    def get_queryset(self, **kwargs):
+        query = self.request.GET.get("q")
+        if query:
+            recipes = self.model.objects.filter(
+                Q(title__icontains=query)
+                | Q(description__icontains=query)
+                | Q(instructions__icontains=query)
+                | Q(cuisine_types__icontains=query)
+            )
+        else:
+            recipes = self.model.objects.all()
+        return recipes
 
 
 class RecipeDetail(DetailView):
