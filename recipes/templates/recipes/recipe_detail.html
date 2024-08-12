@@ -12,6 +12,7 @@
             <h1 class="text-center"> {{ recipes.title }}</h1>
             <p class="text-center">Posted By {{ recipes.user }} on {{recipes.posted_date}}</p>
             <hr>
+            <p>{{ recipes.description }}</p>
             <p><strong>Calories:</strong> {{recipes.calories}}</p>
             <p><strong>Cuisine:</strong> {{recipes.cuisine_types | title}}</p>
 
